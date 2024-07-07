@@ -7,14 +7,17 @@ const Button = ({onClick, text}) => (
 )
 
 const StatisticLine = ({text, value}) => (
-  <p>{text} {value}</p>
+  <tr>
+    <td>{text}</td> 
+    <td>{value}</td>
+  </tr>
 )
 
 const Statistics = (props) => {
   const {good, neutral, bad} = props
   const all = good + neutral + bad
-  const avg = ((good-bad)/all)
-  const positive = (good/all)*100
+  const avg = ((good-bad)/all).toFixed(2)
+  const positive = ((good/all)*100).toFixed(2)
 
   if (all == 0) {
     return (
@@ -23,15 +26,14 @@ const Statistics = (props) => {
   }
 
   return (
-
-    <div>
+    <table>
       <StatisticLine text="good" value ={good}/>
       <StatisticLine text="neutral" value ={neutral}/>
       <StatisticLine text="bad" value ={bad}/>
       <StatisticLine text="all" value ={all}/>
       <StatisticLine text="avg" value ={avg}/>
       <StatisticLine text="positive" value ={positive + '%'}/>
-    </div>
+    </table>
   )
 }
 
